@@ -20,9 +20,10 @@ class ApiUser(AbstractUser):
 class Warehouse(models.Model):
     """Warehouse model"""
     name = models.CharField(max_length=128)
+    ...
 
     def __str__(self):
-        return f"{self.id}: {self.name}"
+        return f"{self.name}"
 
 
 class Product(models.Model):
@@ -30,9 +31,10 @@ class Product(models.Model):
     name = models.CharField(max_length=128)
     count = models.PositiveIntegerField(default=0)
     warehouse = models.ForeignKey(Warehouse, related_name="products", on_delete=CASCADE)
+    ...
 
     def __str__(self):
-        return f"{self.id}: {self.warehouse.name}. Product name: {self.name}."
+        return f"{self.warehouse.name}. Product name: {self.name}."
 
 
 class Order(models.Model):
@@ -40,6 +42,7 @@ class Order(models.Model):
     product = models.ForeignKey(Product, related_name="orders", on_delete=CASCADE)
     user = models.ForeignKey(ApiUser, related_name="orders", on_delete=CASCADE)
     count = models.PositiveIntegerField(default=0)
+    ...
 
     def __str__(self):
         return f"{self.product.name}"

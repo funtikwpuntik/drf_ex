@@ -12,12 +12,12 @@ class UserSerializer(serializers.Serializer):
     password = serializers.CharField(min_length=6, max_length=20, write_only=True)
     type = serializers.ChoiceField(choices=['Поставщик', 'Покупатель'])
 
-    def update(self, instance, validate_data):
-        if email := validate_data.get('email'):
+    def update(self, instance, validated_data):
+        if email := validated_data.get('email'):
             instance.email = email
             instance.save(update_fields=['email'])
 
-        if password := validate_data.get('password'):
+        if password := validated_data.get('password'):
             instance.set_password(password)
             instance.save(update_fields=['password'])
 
@@ -38,6 +38,7 @@ class UserSerializer(serializers.Serializer):
 class WarehouseSerializer(serializers.ModelSerializer):
     """Warehouse serializer"""
     class Meta:
+        """Meta class"""
         model = Warehouse
         fields = "__all__"
         extra_kwargs = {"id": {"read_only": True}}
