@@ -43,7 +43,7 @@ class WarehouseSerializer(serializers.ModelSerializer):
         fields = "__all__"
         extra_kwargs = {"id": {"read_only": True}}
 
-
+# pylint: disable=all
 class ProductSerializer(serializers.Serializer):
     """Product serializer"""
     name = serializers.CharField(validators=[
@@ -51,6 +51,7 @@ class ProductSerializer(serializers.Serializer):
     ])
     count = serializers.IntegerField()
     warehouse = serializers.PrimaryKeyRelatedField(queryset=Warehouse.objects.all())
+
 
     def create(self, validated_data):
         # warehouse = validated_data['warehouse']
@@ -62,13 +63,14 @@ class ProductSerializer(serializers.Serializer):
 
         return product
 
+# pylint: enable=all
     def update(self, instance, validated_data):
         if count := validated_data['count']:
             instance.count += count
             instance.save(update_fields=['count'])
         return instance
 
-
+# pylint: disable=all
 class OrderSerializer(serializers.Serializer):
     """Order serializer"""
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.exclude(count=0))

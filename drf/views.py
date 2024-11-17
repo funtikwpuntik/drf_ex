@@ -9,10 +9,9 @@ from drf.serializers import UserSerializer, WarehouseSerializer, ProductSerializ
 
 
 # Create your views here.
-class VS(viewsets.ModelViewSet):
-    pass
 
-class UserModelViewSet(VS):
+
+class UserModelViewSet(viewsets.ModelViewSet):
     """User model view"""
     queryset = ApiUser.objects.all()
 
@@ -20,7 +19,7 @@ class UserModelViewSet(VS):
     serializer_class = UserSerializer
 
 
-class WarehouseModelViewSet(VS):
+class WarehouseModelViewSet(viewsets.ModelViewSet):
     """Warehouse model view"""
     queryset = Warehouse.objects.all()
     serializer_class = WarehouseSerializer
@@ -28,7 +27,7 @@ class WarehouseModelViewSet(VS):
     permission_classes = [IsAuthenticated, WarehousePermission]
 
 
-class ProductModelViewSet(VS):
+class ProductModelViewSet(viewsets.ModelViewSet):
     """Product model view"""
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -36,7 +35,7 @@ class ProductModelViewSet(VS):
     permission_classes = [IsAuthenticated, WarehousePermission]
 
 
-class OrderModelViewSet(VS):
+class OrderModelViewSet(viewsets.ModelViewSet):
     """Order model view"""
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
