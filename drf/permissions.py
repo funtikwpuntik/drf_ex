@@ -1,7 +1,9 @@
+"""Module permissions"""
 from rest_framework import permissions
 
 
 class WarehousePermission(permissions.BasePermission):
+    """Permission for Warehouse"""
     message = 'Only Warehouse user'
 
     def has_permission(self, request, view):
@@ -15,6 +17,8 @@ class WarehousePermission(permissions.BasePermission):
 
 
 class ClientPermission(permissions.BasePermission):
+    """Permission for Client"""
+
     message = 'Only Client user'
 
     def has_permission(self, request, view):

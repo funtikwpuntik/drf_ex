@@ -1,3 +1,5 @@
+"""Module models"""
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import CASCADE
@@ -7,6 +9,7 @@ from django.db.models import CASCADE
 
 
 class ApiUser(AbstractUser):
+    """User model"""
     type = models.CharField(max_length=32)
     ...
 
@@ -15,6 +18,7 @@ class ApiUser(AbstractUser):
 
 
 class Warehouse(models.Model):
+    """Warehouse model"""
     name = models.CharField(max_length=128)
 
     def __str__(self):
@@ -22,6 +26,7 @@ class Warehouse(models.Model):
 
 
 class Product(models.Model):
+    """Product model"""
     name = models.CharField(max_length=128)
     count = models.PositiveIntegerField(default=0)
     warehouse = models.ForeignKey(Warehouse, related_name="products", on_delete=CASCADE)
@@ -31,6 +36,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    """Order model"""
     product = models.ForeignKey(Product, related_name="orders", on_delete=CASCADE)
     user = models.ForeignKey(ApiUser, related_name="orders", on_delete=CASCADE)
     count = models.PositiveIntegerField(default=0)

@@ -1,3 +1,5 @@
+"""Module Urls"""
+
 from rest_framework.routers import DefaultRouter
 
 from drf.views import UserModelViewSet, WarehouseModelViewSet, ProductModelViewSet, OrderModelViewSet

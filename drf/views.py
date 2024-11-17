@@ -1,3 +1,5 @@
+"""Module Views"""
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -10,6 +12,7 @@ from drf.serializers import UserSerializer, WarehouseSerializer, ProductSerializ
 
 
 class UserModelViewSet(viewsets.ModelViewSet):
+    """User model view"""
     queryset = ApiUser.objects.all()
 
     http_method_names = ['post', 'patch', 'get']
@@ -17,6 +20,7 @@ class UserModelViewSet(viewsets.ModelViewSet):
 
 
 class WarehouseModelViewSet(viewsets.ModelViewSet):
+    """Warehouse model view"""
     queryset = Warehouse.objects.all()
     serializer_class = WarehouseSerializer
 
@@ -24,6 +28,7 @@ class WarehouseModelViewSet(viewsets.ModelViewSet):
 
 
 class ProductModelViewSet(viewsets.ModelViewSet):
+    """Product model view"""
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     http_method_names = ['post', 'patch', 'get', 'put']
@@ -31,6 +36,7 @@ class ProductModelViewSet(viewsets.ModelViewSet):
 
 
 class OrderModelViewSet(viewsets.ModelViewSet):
+    """Order model view"""
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated, ClientPermission]

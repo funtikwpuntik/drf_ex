@@ -1,9 +1,11 @@
+"""Module Serializers"""
 from rest_framework import serializers, validators
 
 from drf.models import ApiUser, Warehouse, Product, Order
 
 
 class UserSerializer(serializers.Serializer):
+    """User serializer"""
     email = serializers.EmailField(validators=[
         validators.UniqueValidator(ApiUser.objects.all())
     ])
@@ -34,6 +36,7 @@ class UserSerializer(serializers.Serializer):
 
 
 class WarehouseSerializer(serializers.ModelSerializer):
+    """Warehouse serializer"""
     class Meta:
         model = Warehouse
         fields = "__all__"
@@ -41,6 +44,7 @@ class WarehouseSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.Serializer):
+    """Product serializer"""
     name = serializers.CharField(validators=[
         validators.UniqueValidator(Product.objects.all())
     ])
@@ -65,6 +69,7 @@ class ProductSerializer(serializers.Serializer):
 
 
 class OrderSerializer(serializers.Serializer):
+    """Order serializer"""
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.exclude(count=0))
     count = serializers.IntegerField()
 
