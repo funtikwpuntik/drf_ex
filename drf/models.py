@@ -13,6 +13,7 @@ class ApiUser(AbstractUser):
     def __str__(self):
         return f"{self.username}"
 
+
 class Warehouse(models.Model):
     name = models.CharField(max_length=128)
 
@@ -28,6 +29,7 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.id}: {self.warehouse.name}. Product name: {self.name}."
 
+
 class Order(models.Model):
     product = models.ForeignKey(Product, related_name="orders", on_delete=CASCADE)
     user = models.ForeignKey(ApiUser, related_name="orders", on_delete=CASCADE)
@@ -35,4 +37,3 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.product.name}"
-

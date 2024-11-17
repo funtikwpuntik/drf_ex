@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -23,15 +22,15 @@ class WarehouseModelViewSet(viewsets.ModelViewSet):
 
     permission_classes = [IsAuthenticated, WarehousePermission]
 
+
 class ProductModelViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     http_method_names = ['post', 'patch', 'get', 'put']
     permission_classes = [IsAuthenticated, WarehousePermission]
 
+
 class OrderModelViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated, ClientPermission]
-
-

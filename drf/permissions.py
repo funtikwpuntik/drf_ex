@@ -1,4 +1,3 @@
-
 from rest_framework import permissions
 
 
@@ -14,6 +13,7 @@ class WarehousePermission(permissions.BasePermission):
         else:
             return False
 
+
 class ClientPermission(permissions.BasePermission):
     message = 'Only Client user'
 
@@ -21,7 +21,6 @@ class ClientPermission(permissions.BasePermission):
         if not request.user.is_authenticated:
             return False
         type = request.user.type
-
 
         if type == 'Покупатель':
             return True

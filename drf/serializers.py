@@ -1,9 +1,6 @@
-from itertools import product
-import json
 from rest_framework import serializers, validators
 
 from drf.models import ApiUser, Warehouse, Product, Order
-
 
 
 class UserSerializer(serializers.Serializer):
@@ -14,7 +11,7 @@ class UserSerializer(serializers.Serializer):
     type = serializers.ChoiceField(choices=['Поставщик', 'Покупатель'])
 
     def update(self, instance, validate_data):
-        if email:= validate_data.get('email'):
+        if email := validate_data.get('email'):
             instance.email = email
             instance.save(update_fields=['email'])
 
@@ -35,12 +32,12 @@ class UserSerializer(serializers.Serializer):
 
         return user
 
+
 class WarehouseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Warehouse
         fields = "__all__"
         extra_kwargs = {"id": {"read_only": True}}
-
 
 
 class ProductSerializer(serializers.Serializer):
@@ -68,7 +65,6 @@ class ProductSerializer(serializers.Serializer):
 
 
 class OrderSerializer(serializers.Serializer):
-
     product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.exclude(count=0))
     count = serializers.IntegerField()
 
@@ -88,7 +84,3 @@ class OrderSerializer(serializers.Serializer):
             user=self.context['request'].user
         )
         return order
-
-
-
-
