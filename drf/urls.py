@@ -2,7 +2,8 @@
 
 from rest_framework.routers import DefaultRouter
 
-from drf.views import UserModelViewSet, WarehouseModelViewSet, ProductModelViewSet, OrderModelViewSet
+from drf.views import (UserModelViewSet, WarehouseModelViewSet,
+                       ProductModelViewSet, OrderModelViewSet)
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
